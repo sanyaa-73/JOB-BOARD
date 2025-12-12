@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>User Profile</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+<h1>Your Profile</h1>
+<nav>
+<a href="index.html">Home</a>
+<a href="jobs.html">Jobs</a>
+<a href="employer.html">Employer Dashboard</a>
+<a href="profile.html">Profile</a>
+</nav>
+</header>
+
+<section>
+<h2>Profile</h2>
+
+<form onsubmit="saveProfile(event)">
+<label>Name:</label>
+<input type="text" id="pname" required>
+
+<label>Email:</label>
+<input type="email" id="pemail" required>
+
+<label>Phone:</label>
+<input type="text" id="pphone" required>
+
+
+<button type="submit">Save</button>
+</form>
+
+<!-- SUCCESS MESSAGE -->
+<p id="successMsg" style="
+  display:none;
+  background:#d4ffd4;
+  color:#0a6b0a;
+  margin-top:15px;
+  padding:10px;
+  border-radius:8px;
+  font-weight:bold;
+  width: fit-content;
+">
+  Profile updated successfully! 🎉
+</p>
+
+<!-- DISPLAY PROFILE DETAILS -->
+<div id="profileOutput" style="
+  margin-top:20px;
+  padding:15px;
+  border:1px solid #ccc;
+  border-radius:8px;
+  display:none;
+  background:#fafafa;
+">
+  <h3>👤 Your Profile Details</h3>
+  <p><strong>Name:</strong> <span id="outName"></span></p>
+  <p><strong>Email:</strong> <span id="outEmail"></span></p>
+  <p><strong>Phone:</strong> <span id="outPhone"></span></p>
+</div>
+
+</section>
+
+<script>
+// SAVE PROFILE (with localStorage)
+function saveProfile(event) {
+    event.preventDefault();
+
+    let name = document.getElementById("pname").value;
+    let email = document.getElementById("pemail").value;
+    let phone = document.getElementById("pphone").value;
+
+    // Save to Local Storage
+    localStorage.setItem("profileName", name);
+    localStorage.setItem("profileEmail", email);
+    localStorage.setItem("profilePhone", phone);
+
+    // Show success message
+    document.getElementById("successMsg").style.display = "block";
+
+    // Display data
+    displayProfile();
+
+    // Clear form
+    document.getElementById("pname").value = "";
+    document.getElementById("pemail").value = "";
+    document.getElementById("pphone").value = "";
+}
+
+// DISPLAY PROFILE IF AVAILABLE
+function displayProfile() {
+    let name = localStorage.getItem("profileName");
+    let email = localStorage.getItem("profileEmail");
+    let phone = localStorage.getItem("profilePhone");
+
+    if (name && email && phone) {
+        document.getElementById("outName").innerText = name;
+        document.getElementById("outEmail").innerText = email;
+        document.getElementById("outPhone").innerText = phone;
+        document.getElementById("profileOutput").style.display = "block";
+    }
+}
+
+// Load profile on page load
+window.onload = function() {
+    displayProfile();
+}
+</script>
+
+</body>
+</html>

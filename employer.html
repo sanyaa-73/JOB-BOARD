@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Employer Dashboard</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+<h1>Employer Dashboard🧑‍💻</h1>
+<nav>
+<a href="index.html">Home</a>
+<a href="jobs.html">Jobs</a>
+<a href="employer.html">Employer Dashboard</a>
+<a href="profile.html">Profile</a>
+</nav>
+</header>
+
+<section>
+<h2>Post a Job</h2>
+
+<form onsubmit="publishJob(event)">
+<label>Job Title:</label>
+<input type="text" id="jobTitle" required>
+
+<label>Company:</label>
+<input type="text" id="company" required>
+
+<label>Location:</label>
+<input type="text" id="location">
+
+<label>Description:</label>
+<textarea id="description"></textarea>
+
+<button type="submit" class="btn">Publish Job</button>
+</form>
+
+<!-- SUCCESS MESSAGE -->
+<p id="successMsg" style="
+  display:none;
+  background:#d4ffd4;
+  color:#0a6b0a;
+  margin-top:15px;
+  padding:10px;
+  border-radius:8px;
+  font-weight:bold;
+  width: fit-content;
+">
+  Job published successfully! 🎉
+</p>
+
+<!-- DISPLAY JOB DETAILS HERE -->
+<div id="jobOutput" style="
+  margin-top:20px;
+  padding:15px;
+  border:1px solid #ccc;
+  border-radius:8px;
+  display:none;
+  background:#fafafa;
+">
+  <h3>📌 Job Details You Posted</h3>
+  <p><strong>Job Title:</strong> <span id="outTitle"></span></p>
+  <p><strong>Company:</strong> <span id="outCompany"></span></p>
+  <p><strong>Location:</strong> <span id="outLocation"></span></p>
+  <p><strong>Description:</strong> <span id="outDesc"></span></p>
+</div>
+
+</section>
+
+<script>
+function publishJob(event) {
+    event.preventDefault(); // stop page reload
+
+    // Get values
+    let title = document.getElementById("jobTitle").value;
+    let company = document.getElementById("company").value;
+    let location = document.getElementById("location").value;
+    let desc = document.getElementById("description").value;
+
+    // Show success message
+    document.getElementById("successMsg").style.display = "block";
+
+    // Display entered info
+    document.getElementById("outTitle").innerText = title;
+    document.getElementById("outCompany").innerText = company;
+    document.getElementById("outLocation").innerText = location;
+    document.getElementById("outDesc").innerText = desc;
+
+    document.getElementById("jobOutput").style.display = "block";
+
+    // Clear form
+    document.getElementById("jobTitle").value = "";
+    document.getElementById("company").value = "";
+    document.getElementById("location").value = "";
+    document.getElementById("description").value = "";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Job Details</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+<h1>Job Details✌️</h1>
+<nav>
+<a href="jobs.html">⬅️Back to Jobs</a>
+<a href="index.html">Home</a>
+</nav>
+</header>
+
+<div class="details-wrapper">
+<section>
+<h2>Backend Developer</h2>
+<p>Company: NovaLabs🔬</p>
+<p>Location: Bengaluru</p>
+<p>Description: Our company is seeking a skilled Backend Engineer to develop robust APIs, manage databases, and ensure high-performance server-side operations</p>
+</section>
+
+
+  <img src="backend.jpg" alt="Image 1"></div>
+<section>
+<h3>Apply Now</h3>
+<form onsubmit="submitForm(event)">
+<label>Your Name👨‍💻:</label>
+<input type="text" id="name" required>
+
+<label>Email📲:</label>
+<input type="email" id="email" required>
+
+<label>Message💬:</label>
+<textarea id="message"></textarea>
+
+<button type="submit">Submit Application</button>
+</form>
+
+<!-- Success Message -->
+<div id="successMsg" style="
+    display:none;
+    background: #d4ffd4;
+    color: #0a6b0a;
+    padding: 12px;
+    margin-top: 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    width: fit-content;
+    animation: fadeIn 0.5s ease-in-out;
+">
+  Application submitted successfully! 🎉
+</div>
+
+<script>
+function submitForm(event) {
+    event.preventDefault(); // prevent page reload
+
+    // Show success message
+    document.getElementById("successMsg").style.display = "block";
+
+    // Clear form fields
+    document.getElementById("name").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("message").value = "";
+}
+</script>
+
+<style>
+/* Smooth fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</section>
+</body>
+</html>

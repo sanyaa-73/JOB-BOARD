@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JOB FINDER🙌 Login</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0; padding: 0;
+    background: beige;
+    height: 100vh; display: flex; justify-content: center; align-items: center;
+}
+.container {
+    width: 320px; background:brown;
+    padding: 20px; border-radius:12px; box-shadow:0 0 15px #0008;
+    text-align: center;
+}
+h2 { margin:15px 0; color:beige; }
+input { width:100%; padding:10px; margin:6px 0; border:1px solid #999; border-radius:6px; }
+button { width:100%; padding:10px; background:beige; color:brown; border:none; border-radius:6px; cursor:pointer; font-weight:bold; }
+.icon { font-size:50px; color:beige; margin-bottom:15px; display:block; }
+.link { color:beige; cursor:pointer; display:block; margin-top:10px; }
+#homePage { display:none; text-align:center; color:white; }
+.companyName { font-size:20px; font-weight:bold; color:beige; margin-bottom:15px; }
+</style>
+</head>
+<body>
+
+<div class="container" id="signupBox">
+    <i class="fas fa-user-plus icon"></i>
+    <div class="companyName">JOB FINDER🙌</div>
+    <h2>Sign Up</h2>
+    <input type="text" id="suName" placeholder="Enter Name">
+    <input type="email" id="suEmail" placeholder="Enter Email">
+    <input type="password" id="suPass" placeholder="Create Password">
+    <button onclick="signup()">Sign Up</button>
+    <span class="link" onclick="showLogin()">Already have an account? Login</span>
+</div>
+
+<div class="container" id="loginBox" style="display:none;">
+    <i class="fas fa-sign-in-alt icon"></i>
+    <div class="companyName">JOB FINDER🙌</div>
+    <h2>Login</h2>
+    <input type="email" id="lgEmail" placeholder="Enter Email">
+    <input type="password" id="lgPass" placeholder="Enter Password">
+    <button onclick="login()">Login</button>
+    <span class="link" onclick="showSignup()">Don't have an account? Sign Up</span>
+</div>
+
+<div id="homePage">
+    <h1>WELCOME TO JOB FINDER🙌</h1>
+    <h3>You are successfully logged in 🎉</h3>
+    <button onclick="logout()">Logout</button>
+</div>
+
+<script>
+const isValidEmail=e=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+const showLogin=()=>{signupBox.style.display="none"; loginBox.style.display="block";}
+const showSignup=()=>{loginBox.style.display="none"; signupBox.style.display="block";}
+
+function signup(){
+    let n=suName.value, e=suEmail.value, p=suPass.value;
+    if(!n||!e||!p){alert("Fill all fields!"); return;}
+    if(!isValidEmail(e)){alert("Invalid Email Format!"); return;}
+    localStorage.setItem("cf_name",n); localStorage.setItem("cf_email",e); localStorage.setItem("cf_pass",p);
+    alert("Signup successful! Please login."); showLogin();
+}
+
+function login(){
+    let e=lgEmail.value, p=lgPass.value, se=localStorage.getItem("cf_email"), sp=localStorage.getItem("cf_pass");
+if (e == se && p == sp) {
+    window.location.href = "index.html";
+    signupBox.style.display = "none";
+    loginBox.style.display = "none";
+    homePage.style.display = "block";
+} else {
+    alert("Invalid email or password");
+}
+
+}
+
+function logout(){homePage.style.display="none"; loginBox.style.display="block";}
+</script>
+
+</body>
+</html>

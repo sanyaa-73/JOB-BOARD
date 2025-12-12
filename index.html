@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Job Board - Home</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header>
+<h1>Job Finder🙌</h1>
+<nav>
+
+<a href="index.html">Home</a>
+<a href="jobs.html">Jobs</a>
+<a href="employer.html">Employer Dashboard</a>
+<a href="profile.html">Profile</a>
+<a href="login.html">⬅️Logout</a>
+</nav>
+</header>
+
+
+<section class="hero">
+<h2>Find Your Dream Job!</h2>
+<form id="jobSearchForm">
+<input type="text" id="searchJob" placeholder="Search job title...">
+<input type="text" id="searchLocation" placeholder="Location...">
+<button type="submit">Find now</button>
+</form>
+</section>
+
+<script>
+// Job data
+const jobs = [
+  { title: "Frontend Developer", location: "Remote", url: "job-details.html" },
+  { title: "Backend Engineer", location: "Bengaluru", url: "job-details2.html" },
+  { title: "Data Analyst", location: "Mumbai", url: "job-details3.html" }
+];
+
+// Search form event
+document.getElementById("jobSearchForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const searchTitle = document.getElementById("searchJob").value.toLowerCase().trim();
+    const searchLocation = document.getElementById("searchLocation").value.toLowerCase().trim();
+
+    // Find matching job
+    const foundJob = jobs.find(job => 
+        job.title.toLowerCase().includes(searchTitle) && 
+        job.location.toLowerCase().includes(searchLocation)
+    );
+
+    if(foundJob) {
+        window.location.href = foundJob.url; // open job page
+    } else {
+        alert("Job not found. Please check title and location.");
+    }
+});
+</script>
+
+
+<section>
+<h2>Available Jobs➡️</h2>
+<ul>
+<li><a href="job-details.html">Frontend Developer - Lagnor🤖</a></li>
+<li><a href="job-details2.html">Backend Engineer - NovaLabs🔬</a></li>
+<li><a href="job-details3.html">Data Analyst-DataTech💻</a></li>
+</ul>
+</section>
+</body>
+</html>
